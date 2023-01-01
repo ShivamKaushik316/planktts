@@ -17,7 +17,12 @@ import {useSpeechSynthesis} from 'react-speech-kit';
 import { Camera } from '@mediapipe/camera_utils/camera_utils'
 
 
-
+function speak(){
+  const h2 = document.querySelector('h2');
+      const text = h2.textContent;
+      const utterance = new SpeechSynthesisUtterance(text);
+      window.speechSynthesis.speak(utterance);
+}
 let leftArmData;
     let leftShoulderRaw;
     let leftElbowRaw;
@@ -40,12 +45,12 @@ let leftArmData;
 // THIS ONE IS FOR TTS 
 
 function PlankPose() {
-  useEffect(() => {
-    const h2 = document.querySelector('h2');
-    const text = h2.textContent;
-    const utterance = new SpeechSynthesisUtterance(text);
-    window.speechSynthesis.speak(utterance);
-  }, []);
+  
+    useEffect(() => {
+      
+    }, []);
+    
+  
   
   const canvasElementRef = createRef()
   const videoElementRef = createRef()
@@ -339,7 +344,7 @@ function radians_to_degrees(radians)
             || ((angleright<=95 && angleright>=75) && angleright_a>=155 && (angleright_c>=70 && angleright_c<=100))
       ){
         document.getElementById("message").innerHTML="ALL SET ";
-        // Speek();
+        speak();
         
       }
       else {
@@ -358,6 +363,7 @@ function radians_to_degrees(radians)
          if (angleleft_a<154){
             console.log("LOWER HIP ACTIVATED");
             document.getElementById("message").innerHTML="Lower Your Hip";
+            speak();
             
             
             
@@ -366,7 +372,7 @@ function radians_to_degrees(radians)
           console.log("LOWER HIP ACTIVATED");
           
           document.getElementById("message").innerHTML="Raise Your Hip";
-         
+         speak();
             
             
         }
@@ -430,6 +436,7 @@ function radians_to_degrees(radians)
         ctx.stroke()
       }
     }
+   
   }
 
 
@@ -460,7 +467,7 @@ function radians_to_degrees(radians)
 
         <div className="ex-tut-container">
         <div className="correct-text">
-          <h2 id="message" >Lower Your Hip</h2>
+          <h2 id="message" >Raise Your Hip</h2>
         </div>
 
         <div className="gif-container">
